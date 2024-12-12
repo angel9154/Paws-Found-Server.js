@@ -19,26 +19,48 @@ mongoose.connection.on('connected', () => {
 });
 
 app.use(express.json());
-
+app.use(express.urlencoded({extended:false}))
 // this is where i am going to be buidling the routes
 // <------------------------------------------------------------------>
 
-
-
-// <------------------------------------------------------------------>
-
-// here is going to be the create route
-app.post('/pets', (req, res) => {
-  res.send ("hello baby");
+app.get('/pets', async (req, res) => {
+	// Add a message to test the route
+	const foundPets = await Pets.find();
+    res.json(foundPets);
 });
 
 // <------------------------------------------------------------------>
 
-// here the update route
+// here is going to be the create route
+app.post('/pets', async (req, res) => {
+  const createdPet = await Pets.create(req.body);
+  res.json(createdPet)
+});
 
 // <------------------------------------------------------------------>
 
-// here the delete route
+app.put('/pets/:petId', async (req, res) => {
+
+  try {
+    const updatedPet = await Pets.findByIdAndUpdate(
+      req.params.petId, 
+      req.body,
+      {new: true})
+      res.json(updatedPet)
+  } catch (error) {
+    console.log(error)
+  }
+ 
+  
+});
+
+// <------------------------------------------------------------------>
+
+app.delete('/pets/:petId', async (req, res) => {
+	// Add a message to test the route
+	const deletedPet = await Pets.findByIdAndDelete(req.params.petId);
+    res.json(deletedPet);
+});
 
 // <------------------------------------------------------------------>
 
