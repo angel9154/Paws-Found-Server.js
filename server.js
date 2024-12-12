@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const {User1, Pets, Report} = require('./models/index')
-
+// const routes = require('./routes/')
+// app.use('/api', routes)
 
 app.use(cors());
 
@@ -27,6 +28,9 @@ app.use(express.json());
 // <------------------------------------------------------------------>
 
 // here is going to be the create route
+app.post('/pets', (req, res) => {
+  res.send ("hello baby");
+});
 
 // <------------------------------------------------------------------>
 
@@ -56,6 +60,6 @@ app.use(express.json());
 
 
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
+app.listen(5501, () => {
+  console.log('Listening on port 5501');
 });
