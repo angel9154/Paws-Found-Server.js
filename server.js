@@ -5,12 +5,11 @@ const app = express();
  require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const {User1, Pets, Report} = require('./models/index')
-// const routes = require('./routes/')
-// app.use('/api', routes)
+const userroutes = require('./routes/userroutes')
+const petsroutes = require('./routes/petsroutes')
+const reportroutes = require('./routes/reportroutes')
 
-app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -18,6 +17,7 @@ mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+app.use(cors());
 app.use(express.json());
 
 // this is where i am going to be buidling the routes
@@ -28,10 +28,10 @@ app.use(express.json());
 // <------------------------------------------------------------------>
 
 // here is going to be the create route
-app.post('/pets', (req, res) => {
-  res.send ("hello baby");
-});
 
+app.use('/users', userroutes)
+app.use('/pets', petsroutes)
+app.use('/report', reportroutes)
 // <------------------------------------------------------------------>
 
 // here the update route
