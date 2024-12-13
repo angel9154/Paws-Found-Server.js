@@ -18,11 +18,11 @@ router.post('/', async (req, res) => {
     router.put('/:reportId', async (req, res) => {
 
         try {
-          const updatedPet = await Report.findByIdAndUpdate(
-            req.params.petId, 
+          const updatedreport = await Report.findByIdAndUpdate(
+            req.params.reportId, 
             req.body,
             {new: true})
-            res.json(updatedPet)
+            res.json(updatedreport)
         } catch (error) {
           console.log(error)
         }
