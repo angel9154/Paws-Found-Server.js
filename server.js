@@ -5,7 +5,7 @@ const app = express();
  require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const {User1, Pets, Report} = require('./models/index')
+// const {User1, Pets, Report} = require('./models/index')
 const userroutes = require('./routes/userroutes')
 const petsroutes = require('./routes/petsroutes')
 const reportroutes = require('./routes/reportroutes')
