@@ -1,40 +1,22 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const { User1 } = require('../models');
+// const { User1 } = require('../models');
+const userController = require('../controllers/userController');
 
+// routes===============================================================
+//Get /Index (list) user
+router.get("/", userController.indexUser);
 
-router.get('/', async (req, res) => {
-	// Add a message to test the route
-	const foundUser = await User1.find();
-    res.json(foundUser);
-});
-router.post('/', async (req, res) => {
-      const createdUser = await User1.create(req.body);
-      res.json(createdUser)
-    });
+//POST/Create a User
+router.post("/",userController.createUser);
 
-    router.put('/:userId', async (req, res) => {
+//Update a User
+router.put("/:UserId",userController.updateUser);
 
-        try {
-          const updatedUser = await User1.findByIdAndUpdate(
-            req.params.userId, 
-            req.body,
-            {new: true})
-            res.json(updatedUser)
-        } catch (error) {
-          console.log(error)
-        }
-       
-        });
+//Delete a User
+router.delete("/:UserId", userController.deleteUser);
 
-
-        router.delete('/:userId', async (req, res) => {
-            // Add a message to test the route
-            const deletedUser = await User1.findByIdAndDelete(req.params.petId);
-            res.json(deletedUser);
-        });
-        
 
 
 

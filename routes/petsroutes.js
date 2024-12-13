@@ -2,38 +2,26 @@ const express = require("express");
 const router = express.Router();
 router.use(express.json());
 const { Pets } = require("../models");
-
+const petsController = require("../controllers/petsController");    
 
 
 //routes===============================================================
-router.get("/", async (req, res) => {
-  // Add a message to test the route
-  const foundPets = await Pets.find();
-  res.json(foundPets);
-});
+//Get /Index (list) pets
+router.get("/",petsController.indexPets);
 
-router.post("/", async (req, res) => {
-  const createdPet = await Pets.create(req.body);
-  res.json(createdPet);
-});
+//POST/Create a pet
+router.post("/",petsController.createPet);
 
-router.put("/:petId", async (req, res) => {
-  try {
-    const updatedPet = await Pets.findByIdAndUpdate(
-      req.params.petId,
-      req.body,
-      { new: true }
-    );
-    res.json(updatedPet);
-  } catch (error) {
-    console.log(error);
-  }
-});
+//Update a pet
+router.put("/:petId",petsController.updatePet);
 
-router.delete("/:petId", async (req, res) => {
-  // Add a message to test the route
-  const deletedPet = await Pets.findByIdAndDelete(req.params.petId);
-  res.json(deletedPet);
-});
+//Delete a pet
+router.delete("/:petId", petsController.deletePet);
+
+
+
+
+
+
 
 module.exports = router;
