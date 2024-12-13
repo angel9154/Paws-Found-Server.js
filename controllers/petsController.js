@@ -1,4 +1,4 @@
-const Pets = require('../models/pets.js');
+const Pets = require('../models/Pets.js');
 
 
 //Get all pets

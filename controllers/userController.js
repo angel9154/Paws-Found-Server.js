@@ -4,20 +4,20 @@ const { User1 } = require('../models');
 
 //Get all User
 const indexUser  = async (req, res) => {
-    const foundUser  = await User  .find();
+    const foundUser  = await User1.find();
     res.json(foundUser);
   }
 
   //create a User
   const createUser = async (req, res) => {
-    const createdUser = await Repor.create(req.body);
+    const createdUser = await User1.create(req.body);
     res.json(createdUser);
   }
 
 //Update a User
 const updateUser = async (req, res) => {
     try {
-      const updatedUser = await User.findByIdAndUpdate(
+      const updatedUser = await User1.findByIdAndUpdate(
         req.params.UserId,
         req.body,
         { new: true }
@@ -35,7 +35,7 @@ const updateUser = async (req, res) => {
   //Delete a User
   const deleteUser = async (req, res) => {
     try {
-    const deletedUser = await User.findByIdAndDelete(req.params.UserId);
+    const deletedUser = await User1.findByIdAndDelete(req.params.UserId);
     if (!deletedUser) {
         return res.status(404).json({ message: 'User not found' });
       }

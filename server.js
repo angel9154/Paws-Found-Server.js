@@ -9,7 +9,7 @@ const cors = require('cors');
 const userroutes = require('./routes/userroutes')
 const petsroutes = require('./routes/petsroutes')
 const reportroutes = require('./routes/reportroutes')
-const models = require('./models/index')
+// const models = require('./models/index')
 
 mongoose.connect(process.env.MONGODB_URI);
 

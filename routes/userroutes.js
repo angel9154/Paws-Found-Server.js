@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const { User1 } = require('../models');
+// const { User1 } = require('../models');
 const userController = require('../controllers/userController');
 
 // routes===============================================================

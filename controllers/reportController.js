@@ -1,23 +1,23 @@
-const Report = require('../models/reportModel');
+const Report = require('../models/Report.js');
 
 //ROUTES
 
 //Get all Report
 const indexReport  = async (req, res) => {
-    const foundReport  = await Report  .find();
+    const foundReport  = await Report.find();
     res.json(foundReport);
   }
 
   //create a Report
   const createReport = async (req, res) => {
-    const createdReport = await Repor.create(req.body);
+    const createdReport = await Report.create(req.body); // here you had repor instead of Report
     res.json(createdReport);
   }
 
   //Update a Report
   const updateReport = async (req, res) => {
     try {
-      const updatedReport = await Report .findByIdAndUpdate(
+      const updatedReport = await Report.findByIdAndUpdate(
         req.params.ReportId,
         req.body,
         { new: true }
@@ -37,7 +37,7 @@ const indexReport  = async (req, res) => {
   const deleteReport = async (req, res) => {
 
    try{ // Add a message to test the route
-    const deletedReport = await Repor.findByIdAndDelete(req.params.ReportId);
+    const deletedReport = await Report.findByIdAndDelete(req.params.ReportId);
     if(!deletedReport){
       return res.status(404).json({message: 'Report not found'});
     }
