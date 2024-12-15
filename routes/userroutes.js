@@ -4,7 +4,8 @@ router.use(express.json());
 // const { User1 } = require('../models');
 const userController = require('../controllers/userController');
 
-// routes===============================================================
+// ROUTES FOR USER MANAGEMENT=========================================
+
 //Get /Index (list) user
 router.get("/", userController.indexUser);
 
