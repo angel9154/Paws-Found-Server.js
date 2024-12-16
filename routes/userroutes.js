@@ -1,11 +1,23 @@
 const express = require('express');
-const User = require('../models/User');
 const router = express.Router();
 router.use(express.json());
-//ROUTES
-router.get('/pets', (req, res) => {
-    res.send ("hello");
-});
+// const { User1 } = require('../models');
+const userController = require('../controllers/userController');
+
+// ROUTES FOR USER MANAGEMENT=========================================
+
+//Get /Index (list) user
+router.get("/", userController.indexUser);
+
+//POST/Create a User
+router.post("/",userController.createUser);
+
+//Update a User
+router.put("/:UserId",userController.updateUser);
+
+//Delete a User
+router.delete("/:UserId", userController.deleteUser);
+
 
 
 
