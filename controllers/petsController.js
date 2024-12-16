@@ -19,7 +19,7 @@ const indexPets = async (req, res) => {
 //GET: SHOw a specific pet by ID
 const showPet = async (req, res) => {
     try {
-      const pet = await Pet.findById(req.params.id); // Find a pet by its ID
+      const pet = await Pets.findById(req.params.id); // Find a pet by its ID
       if (!pet) {
         return res.status(404).json({ error: 'Pet not found.' });
       }
@@ -68,4 +68,4 @@ const deletePet = async (req, res) => {
 }
 
 //exporting all the functions
-module.exports = {  indexPets, createPet, updatePet, deletePet }
+module.exports = { indexPets, showPet, createPet, updatePet, deletePet };
