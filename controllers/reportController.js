@@ -68,4 +68,4 @@ const deleteReport = async (req, res) => {
 };
 
 // exporting all the functions
-module.exports = { indexReport, createReport, updateReport, deleteReport };
+module.exports = { indexReport, createReport, updateReport, deleteReport, showReport }; 
