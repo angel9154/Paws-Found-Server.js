@@ -16,6 +16,19 @@ const indexPets = async (req, res) => {
   const foundPets = await Pets.find();
   res.json(foundPets);
 }
+//GET: SHOw a specific pet by ID
+const showPet = async (req, res) => {
+    try {
+      const pet = await Pet.findById(req.params.id); // Find a pet by its ID
+      if (!pet) {
+        return res.status(404).json({ error: 'Pet not found.' });
+      }
+      res.json(pet);
+    } catch (err) {
+      res.status(500).json({ error: 'Error fetching pet details.' });
+    }
+  };
+
 
 //POST: Send data to create a new animal up for adoption
 const createPet = async (req, res) => {

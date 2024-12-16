@@ -17,6 +17,19 @@ const indexReport = async (req, res) => {
   res.json(foundReport);
 };
 
+//GET" SHOw a specific report by ID
+const showReport = async (req, res) => {
+  try {
+    const report = await Report.findById(req.params.ReportId); // Find a report by its ID
+    if (!report) {
+      return res.status(404).json({ error: "Report not found." });
+    }
+    res.json(report);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching report details." });
+  }
+};
+
 //POST: Send data to create a new resource (e.g., add a new report).
 const createReport = async (req, res) => {
   const createdReport = await Report.create(req.body); // here you had repor instead of Report
