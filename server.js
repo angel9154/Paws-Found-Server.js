@@ -6,6 +6,7 @@ const cors = require('cors');
 const contactRoutes = require('./routes/contactformroute'); // Import the contact route
 
 
+const bcrypt = require('bcrypt');
 //Initialize Express App  ======================================
 const app = express();
 
@@ -30,13 +31,52 @@ const reportroutes = require('./routes/reportroutes')
 const contactformroute = require('./routes/contactformroute')
 // const contactformroute = require('./routes/contactformroute')
 // const {User1, Pets, Report} = require('./models/index')
+const {User1, Pets, Report} = require('./models/index')
 // const models = require('./models/index')
 
 app.use('/users', userroutes) //
 app.use('/report', reportroutes)
 app.use('/pets', petsroutes)
 app.use('/contact', contactformroute); // No "api" prefix
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
 
+  try {
+    // Find the user by username
+    const user = await User1.findOne({ username: username });
+
+    // Check if user exists
+    if (!user) {
+      return res.status(401).json({
+        message: "User not found"
+      });
+    }
+
+    // Verify password using bcrypt (password is hashed in the database)
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (isPasswordCorrect) {
+      // Successful login
+      res.json({
+        message: "Login successful",
+        user: {
+          id: user._id,
+          username: user.username
+        }
+      });
+    } else {
+      // Incorrect password
+      res.status(401).json({
+        message: "Incorrect password"
+      });
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({
+      message: "Server error during login"
+    });
+  }
+});
 //CRUD Flowchart
 //1.Create
 //User submits input via a form ➡️ Send POST request ➡️ Add data to the database ➡️ Confirmation of success.
