@@ -9,6 +9,9 @@ const petsController = require("../controllers/petsController");
 //Get /Index (Fetch all pets available for adotption)
 router.get("/",petsController.indexPets);
 
+//Get /Show (Fetch a specific pet by ID)
+router.get('/pets/:id', petsController.showPet);
+
 //POST/Create a new pet adoption for listing)
 router.post("/",petsController.createPet);
 

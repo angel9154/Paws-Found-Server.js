@@ -8,11 +8,17 @@ const reportController = require("../controllers/reportController");
 //ROUTES===============================================================
 //GET /Index (Fetch a list of all animals that are lost or found)
 router.get("/", reportController.indexReport);
+
+//GET /Show (Fetch a specific animal that is lost or found by ID)
+router.get("/:ReportId", reportController.showReport); // Changed from petId to ReportId
+
 //POST/Create a new animal that is lost or found.
 router.post("/", reportController.createReport);
+
 //PUT:Edit one of the animals on the list by ID
 router.put("/:ReportId", reportController.updateReport);  // Changed from petId to ReportId
-//Delete: Remove an animal from the lost or found list by id. 
+
+//Delete: Remove an animal from the lost or found list by id.
 router.delete("/:ReportId", reportController.deleteReport);
 
 
