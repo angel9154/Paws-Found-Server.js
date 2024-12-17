@@ -3,6 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
+const contactRoutes = require('./routes/contactformroute'); // Import the contact route
+
+
 const bcrypt = require('bcrypt');
 //Initialize Express App  ======================================
 const app = express();
@@ -25,12 +28,16 @@ app.use(express.urlencoded({ extended: false }))
 const userroutes = require('./routes/userroutes')
 const petsroutes = require('./routes/petsroutes')
 const reportroutes = require('./routes/reportroutes')
+const contactformroute = require('./routes/contactformroute')
+// const contactformroute = require('./routes/contactformroute')
+// const {User1, Pets, Report} = require('./models/index')
 const {User1, Pets, Report} = require('./models/index')
 // const models = require('./models/index')
 
 app.use('/users', userroutes) //
 app.use('/report', reportroutes)
 app.use('/pets', petsroutes)
+app.use('/contact', contactformroute); // No "api" prefix
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 

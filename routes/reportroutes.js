@@ -19,7 +19,7 @@ router.post("/", reportController.createReport);
 router.put("/:ReportId", reportController.updateReport);  // Changed from petId to ReportId
 
 //Delete: Remove an animal from the lost or found list by id.
-router.delete("/:ReportId", reportController.deleteReport);
+router.delete("report/:ReportId", reportController.deleteReport);
 
 
 // this cannot be used in here because we are using the report model
